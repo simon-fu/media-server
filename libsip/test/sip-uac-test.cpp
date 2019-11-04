@@ -99,8 +99,11 @@ static int sip_uac_transport_via(void* transport, const char* destination, char 
 			if (0 == socket_addr_from(&ss, &len, local, port))
 				socket_addr_name((struct sockaddr*)&ss, len, dns, 128);
 
-			if (SIP_PORT != port)
-				snprintf(local + strlen(local), 128 - strlen(local), ":%hu", port);
+            if (SIP_PORT != port){
+                snprintf(local + strlen(local), 128 - strlen(local), ":%hu", port);
+                snprintf(dns + strlen(dns), 128 - strlen(dns), ":%hu", port);
+            }
+				
 
 			if (NULL == strchr(dns, '.'))
 				snprintf(dns, 128, "%s", local); // don't have valid dns
@@ -163,7 +166,9 @@ static int sip_uac_onregister(void* param, const struct sip_message_t* reply, st
 		// https://blog.csdn.net/yunlianglinfeng/article/details/81109380
 		// http://www.voidcn.com/article/p-oqqbqgvd-bgn.html
 		const cstring_t* h;
-		t = sip_uac_register(test->uac, "sip:34020000001320000001@192.168.154.1", "sip:192.168.154.128", 3600, sip_uac_onregister, param);
+//        t = sip_uac_register(test->uac, "sip:34020000001320000001@192.168.154.1", "sip:192.168.154.128", 3600, sip_uac_onregister, param);
+        t = sip_uac_register(test->uac, "sip:1001@172.17.1.216", "sip:172.17.1.216", 3600, sip_uac_onregister, test);
+        
 		h = sip_message_get_header_by_name(reply, "Call-ID");
 		sip_uac_add_header(t, "Call-ID", h->p); // All registrations from a UAC SHOULD use the same Call-ID
 		h = sip_message_get_header_by_name(reply, "CSeq");
@@ -183,7 +188,7 @@ static int sip_uac_onregister(void* param, const struct sip_message_t* reply, st
 			//HA1=md5(username:realm:password)
 			//HA2=md5(Method:Uri)
 			//RESPONSE=md5(HA1:nonce:HA2)
-			snprintf(buffer, sizeof(buffer), "%s:%s:%s", "34020000001320000001", auth.realm, "12345678");
+			snprintf(buffer, sizeof(buffer), "%s:%s:%s", "34020000001320000001", auth.realm, "1234");
 			md5_digest((uint8_t*)buffer, strlen(buffer), (uint8_t*)HA1);
 			snprintf(buffer, sizeof(buffer), "%s:%s", "REGISTER", "sip:192.168.154.128");
 			md5_digest((uint8_t*)buffer, strlen(buffer), (uint8_t*)HA2);
@@ -222,7 +227,7 @@ static void sip_uac_register_test(struct sip_uac_test_t *test)
 {
 	struct sip_uac_transaction_t* t;
 	//t = sip_uac_register(uac, "Bob <sip:bob@biloxi.com>", "sip:registrar.biloxi.com", 7200, sip_uac_message_onregister, test);
-	t = sip_uac_register(test->uac, "sip:34020000001320000001@192.168.154.1", "sip:192.168.154.128", 3600, sip_uac_onregister, test);
+	t = sip_uac_register(test->uac, "sip:1001@172.17.1.216", "sip:172.17.1.216", 3600, sip_uac_onregister, test);
 	assert(0 == sip_uac_send(t, NULL, 0, &test->transport, test));
 }
 
@@ -296,6 +301,7 @@ static void sip_uac_loop(struct sip_uac_test_t *test)
 	http_parser_destroy(server);
 }
 
+extern "C" void sip_uac_test(void);
 void sip_uac_test(void)
 {
 	struct sip_uac_test_t test;
@@ -310,7 +316,8 @@ void sip_uac_test(void)
 
 	test.udp = socket_udp();
 	test.uac = sip_uac_create();
-	socket_bind_any(test.udp, SIP_PORT);
+//    socket_bind_any(test.udp, SIP_PORT);
+    socket_bind_any(test.udp, SIP_PORT+3000);
 	sip_uac_register_test(&test);
 	//sip_uac_message_test(&test);
 	//sip_uac_invite_test(&test);

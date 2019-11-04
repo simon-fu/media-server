@@ -95,6 +95,9 @@
 		46F4BE5421843CC500CC9B15 /* aio-rtmp-server.c in Sources */ = {isa = PBXBuildFile; fileRef = 46F4BE4E21843CC400CC9B15 /* aio-rtmp-server.c */; };
 		46F4BE5521843CC500CC9B15 /* aio-rtmp-client.c in Sources */ = {isa = PBXBuildFile; fileRef = 46F4BE5021843CC400CC9B15 /* aio-rtmp-client.c */; };
 		46F4BE5621843CC500CC9B15 /* aio-rtmp-transport.c in Sources */ = {isa = PBXBuildFile; fileRef = 46F4BE5121843CC500CC9B15 /* aio-rtmp-transport.c */; };
+		F4235139228A6C7D00D805B4 /* sip-uas-test2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4235138228A6C7D00D805B4 /* sip-uas-test2.cpp */; };
+		F423513E228A6D7700D805B4 /* avpacket-queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F423513A228A6D7700D805B4 /* avpacket-queue.cpp */; };
+		F423513F228A6D7700D805B4 /* pcm-file-source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F423513C228A6D7700D805B4 /* pcm-file-source.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -213,6 +216,11 @@
 		46F4BE5121843CC500CC9B15 /* aio-rtmp-transport.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "aio-rtmp-transport.c"; path = "../../librtmp/aio/aio-rtmp-transport.c"; sourceTree = "<group>"; };
 		46F4BE5221843CC500CC9B15 /* aio-rtmp-client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "aio-rtmp-client.h"; path = "../../librtmp/aio/aio-rtmp-client.h"; sourceTree = "<group>"; };
 		46F4BE5321843CC500CC9B15 /* aio-rtmp-transport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "aio-rtmp-transport.h"; path = "../../librtmp/aio/aio-rtmp-transport.h"; sourceTree = "<group>"; };
+		F4235138228A6C7D00D805B4 /* sip-uas-test2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "sip-uas-test2.cpp"; path = "../libsip/test/sip-uas-test2.cpp"; sourceTree = "<group>"; };
+		F423513A228A6D7700D805B4 /* avpacket-queue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "avpacket-queue.cpp"; sourceTree = "<group>"; };
+		F423513B228A6D7700D805B4 /* avpacket-queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "avpacket-queue.h"; sourceTree = "<group>"; };
+		F423513C228A6D7700D805B4 /* pcm-file-source.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "pcm-file-source.cpp"; sourceTree = "<group>"; };
+		F423513D228A6D7700D805B4 /* pcm-file-source.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "pcm-file-source.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,6 +306,7 @@
 		46C5B4852183EED800419E57 /* libsip */ = {
 			isa = PBXGroup;
 			children = (
+				F4235138228A6C7D00D805B4 /* sip-uas-test2.cpp */,
 				46C5B4932183EF2400419E57 /* sip-header-test.c */,
 				46C5B4902183EF2400419E57 /* sip-timer.c */,
 				46C5B4942183EF2400419E57 /* sip-uac-message-test.cpp */,
@@ -418,6 +427,10 @@
 		46C5B4A32183EF3C00419E57 /* media */ = {
 			isa = PBXGroup;
 			children = (
+				F423513A228A6D7700D805B4 /* avpacket-queue.cpp */,
+				F423513B228A6D7700D805B4 /* avpacket-queue.h */,
+				F423513C228A6D7700D805B4 /* pcm-file-source.cpp */,
+				F423513D228A6D7700D805B4 /* pcm-file-source.h */,
 				46C5B4A42183EF3C00419E57 /* ps-file-source.h */,
 				46C5B4A52183EF3C00419E57 /* h264-file-source.h */,
 				46C5B4A62183EF3C00419E57 /* media-source.h */,
@@ -547,6 +560,7 @@
 				46C5B4C12183EF4A00419E57 /* rtp-sender-test.cpp in Sources */,
 				468FDABC21843B610092E381 /* ntp-time.c in Sources */,
 				46C5B4992183EF2400419E57 /* sip-uas-message-test.cpp in Sources */,
+				F423513F228A6D7700D805B4 /* pcm-file-source.cpp in Sources */,
 				468FDAC221843B9F0092E381 /* ip-route.c in Sources */,
 				468FDAC421843BAA0092E381 /* base64.c in Sources */,
 				46C5B4D62183EF5700419E57 /* rtmp-publish-aio-test.cpp in Sources */,
@@ -557,6 +571,7 @@
 				46C5B4EE2183EF6E00419E57 /* fmp4-writer-test.cpp in Sources */,
 				468FDAC621843BB00092E381 /* app-log.c in Sources */,
 				46C5B4B72183EF3C00419E57 /* ffmpeg-file-source.cpp in Sources */,
+				F4235139228A6C7D00D805B4 /* sip-uas-test2.cpp in Sources */,
 				46C5B5002183EF8900419E57 /* amf0-test.c in Sources */,
 				46C5B4D32183EF5700419E57 /* rtmp-play-aio-test.cpp in Sources */,
 				46C5B4E22183EF6300419E57 /* mpeg-ts-dec-test.cpp in Sources */,
@@ -590,6 +605,7 @@
 				46C5B4E02183EF6300419E57 /* mpeg-ps-dec-test.cpp in Sources */,
 				46C5B4B32183EF3C00419E57 /* rtp-udp-transport.cpp in Sources */,
 				46C5B4F22183EF6E00419E57 /* mov-writer-h264.cpp in Sources */,
+				F423513E228A6D7700D805B4 /* avpacket-queue.cpp in Sources */,
 				46C5B4842183EED100419E57 /* BinaryDiff.cpp in Sources */,
 				46C5B4B42183EF3C00419E57 /* rtsp-server-test.cpp in Sources */,
 				46F4BE5521843CC500CC9B15 /* aio-rtmp-client.c in Sources */,

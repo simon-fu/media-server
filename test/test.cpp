@@ -24,6 +24,8 @@ extern "C" void http_header_www_authenticate_test(void);
 extern "C" void rtsp_example();
 extern "C" void rtsp_client_test(const char* host, const char* file);
 extern "C" void http_server_test(const char* ip, int port);
+extern "C" void sip_uac_test(void);
+extern "C" void sip_uas_test2(void);
 
 void mpeg_ts_dec_test(const char* file);
 void mpeg_ts_test(const char* input, const char* output);
@@ -121,7 +123,26 @@ int main(int argc, char* argv[])
 	//rtmp_server_vod_aio_test("720p.flv");
 	//rtmp_server_publish_aio_test("720p.flv");
 	//rtmp_server_forward_aio_test(NULL, 1935);
-
+    
+    // rtmp client, play from server and dump to flv file
+    //rtmp_play_aio_test("127.0.0.1", "myapp", "u1", "/tmp/out.flv");
+    
+    // rtmp client, read flv file and push to server
+    //rtmp_publish_aio_test("127.0.0.1", "myapp", "u1", "/tmp/out.flv");
+    
+    // rtmp server, read pushing from client and dump to flv file
+    //rtmp_server_publish_test("/tmp/out.flv");
+    
+    // rtmp server, read from flv file and feed to client playing
+    // rtmp_server_vod_test("/tmp/out.flv");
+    
+    rtmp_server_forward_aio_test(NULL, 1935);
+    
+    
+    
+    //sip_uac_test();
+    //sip_uas_test2();
+    
 	socket_cleanup();
 	return 0;
 }

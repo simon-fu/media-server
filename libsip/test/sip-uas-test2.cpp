@@ -168,6 +168,8 @@ static void sip_uas_loop(struct sip_uas_test_t *test)
 	} while (1);
 }
 
+extern "C" void sip_uas_test2(void);
+
 void sip_uas_test2(void)
 {
 	struct sip_uas_handler_t handler = {
@@ -180,7 +182,8 @@ void sip_uas_test2(void)
 	};
 	struct sip_uas_test_t test;
 	test.udp = socket_udp();
-	test.uas = sip_uas_create("10.2.211.141", &handler, &test);
+	//test.uas = sip_uas_create("10.2.211.141", &handler, &test);
+    test.uas = sip_uas_create("172.17.1.216", &handler, &test);
 	test.parser = http_parser_create(HTTP_PARSER_SERVER);
 	socket_bind_any(test.udp, SIP_PORT);
 	sip_uas_loop(&test);

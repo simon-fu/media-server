@@ -32,7 +32,7 @@ struct sip_uas_t* sip_uas_create(const char* name, struct sip_uas_handler_t* han
 
 	uas->ref = 1;
 	locker_create(&uas->locker);
-//	LIST_INIT_HEAD(sip_dialog_root());
+	LIST_INIT_HEAD(sip_dialog_root());
 	LIST_INIT_HEAD(&uas->transactions);
 	memcpy(&uas->handler, handler, sizeof(uas->handler));
 	uas->param = param;
